@@ -10,10 +10,10 @@ const resolvers = {
         }
     },
     Mutation: {
-        addMessage: (root, { id, content }) => {
+        addMessage: (root, { content }) => {
             let allMessages = messages;
             const newMessage = {
-                id,
+                id: allMessages.length + 1,
                 content,
                 isOwner: false,
                 readStatus: false
@@ -23,7 +23,7 @@ const resolvers = {
             pubsub.publish('messageAdded', {
                 messageAdded: newMessage
             })
-            return allMessages;
+            return newMessage;
         }
     },
     Subscription: {

@@ -16,7 +16,7 @@ const typeDefs = `
     }
 
     type Mutation {
-        addMessage(id: ID!, content: String!): [Message!]!
+        addMessage(content: String!): Message!
     }
 
     type Subscription {
