@@ -97,6 +97,17 @@ eval("module.exports = [{\"id\":1,\"content\":\"I am interested in  your propert
 
 /***/ }),
 
+/***/ "./data/notifications.json":
+/*!*********************************!*\
+  !*** ./data/notifications.json ***!
+  \*********************************/
+/*! exports provided: count, default */
+/***/ (function(module) {
+
+eval("module.exports = {\"count\":3};\n\n//# sourceURL=webpack:///./data/notifications.json?");
+
+/***/ }),
+
 /***/ "./index.js":
 /*!******************!*\
   !*** ./index.js ***!
@@ -117,7 +128,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var grap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst messages = __webpack_require__(/*! ./data/messages */ \"./data/messages.json\");\nconst { PubSub } = __webpack_require__(/*! apollo-server */ \"apollo-server\");\nconst pubsub = new PubSub();\nconst typeDefs = __webpack_require__(/*! ./schema */ \"./schema.js\");\n\nconst resolvers = {\n    Query: {\n        allMessages: (root, args) => {\n            return messages;\n        }\n    },\n    Mutation: {\n        addMessage: (root, { content }) => {\n            let allMessages = messages;\n            const newMessage = {\n                id: allMessages.length + 1,\n                content,\n                isOwner: false,\n                readStatus: false\n            };\n            allMessages.push(newMessage);\n\n            pubsub.publish('messageAdded', {\n                messageAdded: newMessage\n            });\n            return newMessage;\n        }\n    },\n    Subscription: {\n        messageAdded: {\n            subscribe: () => pubsub.asyncIterator('messageAdded')\n        }\n    }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (resolvers);\n\n//# sourceURL=webpack:///./resolvers.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst messages = __webpack_require__(/*! ./data/messages */ \"./data/messages.json\");\nconst notifications = __webpack_require__(/*! ./data/notifications */ \"./data/notifications.json\");\n\nconst { PubSub } = __webpack_require__(/*! apollo-server */ \"apollo-server\");\nconst pubsub = new PubSub();\n\nconst resolvers = {\n    Query: {\n        allMessages: (root, args) => {\n            return messages;\n        },\n        notifications: (root, args) => {\n            return notifications;\n        }\n    },\n    Mutation: {\n        addMessage: (root, { content }) => {\n            let allMessages = messages;\n            const newMessage = {\n                id: allMessages.length + 1,\n                content,\n                isOwner: false,\n                readStatus: false\n            };\n            allMessages.push(newMessage);\n\n            pubsub.publish('messageAdded', {\n                messageAdded: newMessage\n            });\n            return newMessage;\n        },\n        addNotification: (root, args) => {\n            const newCount = {\n                count: ++notifications.count\n            };\n\n            pubsub.publish('notificationAdded', {\n                notificationAdded: newCount\n            });\n\n            return newCount;\n        }\n    },\n    Subscription: {\n        messageAdded: {\n            subscribe: () => pubsub.asyncIterator('messageAdded')\n        },\n        notificationAdded: {\n            subscribe: () => pubsub.asyncIterator('notificationAdded')\n        }\n    }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (resolvers);\n\n//# sourceURL=webpack:///./resolvers.js?");
 
 /***/ }),
 
@@ -129,7 +140,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nconst messages = __webpack_re
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst typeDefs = `\n    type Message {\n        id: ID!\n        content: String!\n        isOwner: Boolean!\n        readStatus: Boolean!\n    }\n\n    type Query {\n        allMessages: [Message!]!\n    }\n\n    type Lead {\n        id: ID!\n        messages: [Message]!\n    }\n\n    type Mutation {\n        addMessage(content: String!): Message!\n    }\n\n    type Subscription {\n        messageAdded: Message!\n    }\n`;\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (typeDefs);\n\n//# sourceURL=webpack:///./schema.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst typeDefs = `\n    type Message {\n        id: ID!\n        content: String!\n        isOwner: Boolean!\n        readStatus: Boolean!\n    }\n\n    type Lead {\n        id: ID!\n        messages: [Message]!\n    }\n\n    type Notifications {\n        count: Int!\n    }\n\n    type Query {\n        allMessages: [Message!]!\n        notifications: Notifications!\n    }\n\n    type Mutation {\n        addMessage(content: String!): Message!\n        addNotification: Notifications!\n    }\n\n    type Subscription {\n        messageAdded: Message!\n        notificationAdded: Notifications!\n    }\n`;\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (typeDefs);\n\n//# sourceURL=webpack:///./schema.js?");
 
 /***/ }),
 
