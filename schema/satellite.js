@@ -1,4 +1,5 @@
-const typeDefs = `
+const satelliteSchema =
+    `
     type Message {
         id: ID!
         content: String!
@@ -31,4 +32,4 @@ const typeDefs = `
     }
 `;
 
-export default typeDefs;
+export default satelliteSchema;

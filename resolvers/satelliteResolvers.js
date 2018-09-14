@@ -1,10 +1,10 @@
-const messages = require('./data/messages');
-const notifications = require('./data/notifications');
+const messages = require('../data/messages');
+const notifications = require('../data/notifications');
 
 const { PubSub } = require('apollo-server');
 const pubsub = new PubSub();
 
-const resolvers = {
+const satelliteResolvers = {
     Query: {
         allMessages: (root, args) => {
             return messages;
@@ -33,7 +33,7 @@ const resolvers = {
             const newCount = {
                 count: ++notifications.count
             };
-            
+
             pubsub.publish('notificationAdded', {
                 notificationAdded: newCount
             });
@@ -51,4 +51,4 @@ const resolvers = {
     }
 };
 
-export default resolvers;
+export default satelliteResolvers;
