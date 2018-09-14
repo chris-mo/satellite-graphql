@@ -8,6 +8,8 @@ const foaasSchema = `
         getAnyway: Foaas!
         getBirthday: Foaas!
         getParticular: Foaas!
+        getProgrammer: Foaas!
+        getPulp: Foaas!
     }
 `;
 

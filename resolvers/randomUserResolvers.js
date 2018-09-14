@@ -11,7 +11,7 @@ const randomUserResolver = {
                     return json;
                 })
                 .then((res) => {
-                    console.log(res);
+                    return res.results[0]
                 })
         }
     }
