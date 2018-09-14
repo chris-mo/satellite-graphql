@@ -1,10 +1,9 @@
-const { ApolloServer, PubSub } = require('apollo-server');
-import { makeExecutableSchema, mergeSchemas} from 'graphql-tools';
+import { ApolloServer, PubSub } from 'apollo-server';
+import { makeExecutableSchema } from 'graphql-tools';
 import schema from './schema';
 
 import resolvers from './resolvers' 
 import messages from './data/messages';
-
 
 const executableSchema = makeExecutableSchema({
     typeDefs: [schema],

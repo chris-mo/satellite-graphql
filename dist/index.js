@@ -116,7 +116,19 @@ eval("module.exports = {\"count\":3};\n\n//# sourceURL=webpack:///./data/notific
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var graphql_tools__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tools */ \"graphql-tools\");\n/* harmony import */ var graphql_tools__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tools__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _schema__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./schema */ \"./schema/index.js\");\n/* harmony import */ var _resolvers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resolvers */ \"./resolvers/index.js\");\n/* harmony import */ var _data_messages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./data/messages */ \"./data/messages.json\");\nvar _data_messages__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./data/messages */ \"./data/messages.json\", 1);\nconst { ApolloServer, PubSub } = __webpack_require__(/*! apollo-server */ \"apollo-server\");\n\n\n\n\n\n\nconst executableSchema = Object(graphql_tools__WEBPACK_IMPORTED_MODULE_0__[\"makeExecutableSchema\"])({\n    typeDefs: [_schema__WEBPACK_IMPORTED_MODULE_1__[\"default\"]],\n    resolvers: _resolvers__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n});\n\nconst pubsub = new PubSub();\n\nconst context = {\n    messages: _data_messages__WEBPACK_IMPORTED_MODULE_3__,\n    pubsub\n};\n\nconst server = new ApolloServer({\n    schema: executableSchema,\n    context\n});\n\nserver.listen().then(({ url }) => {\n    console.log(`Server running at ${url}`);\n});\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var apollo_server__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-server */ \"apollo-server\");\n/* harmony import */ var apollo_server__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_server__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var graphql_tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! graphql-tools */ \"graphql-tools\");\n/* harmony import */ var graphql_tools__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(graphql_tools__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _schema__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./schema */ \"./schema/index.js\");\n/* harmony import */ var _resolvers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./resolvers */ \"./resolvers/index.js\");\n/* harmony import */ var _data_messages__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data/messages */ \"./data/messages.json\");\nvar _data_messages__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./data/messages */ \"./data/messages.json\", 1);\n\n\n\n\n\n\n\nconst executableSchema = Object(graphql_tools__WEBPACK_IMPORTED_MODULE_1__[\"makeExecutableSchema\"])({\n    typeDefs: [_schema__WEBPACK_IMPORTED_MODULE_2__[\"default\"]],\n    resolvers: _resolvers__WEBPACK_IMPORTED_MODULE_3__[\"default\"]\n});\n\nconst pubsub = new apollo_server__WEBPACK_IMPORTED_MODULE_0__[\"PubSub\"]();\n\nconst context = {\n    messages: _data_messages__WEBPACK_IMPORTED_MODULE_4__,\n    pubsub\n};\n\nconst server = new apollo_server__WEBPACK_IMPORTED_MODULE_0__[\"ApolloServer\"]({\n    schema: executableSchema,\n    context\n});\n\nserver.listen().then(({ url }) => {\n    console.log(`Server running at ${url}`);\n});\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./resolvers/foaasResolvers.js":
+/*!*************************************!*\
+  !*** ./resolvers/foaasResolvers.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! node-fetch */ \"node-fetch\");\n/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var apollo_server__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! apollo-server */ \"apollo-server\");\n/* harmony import */ var apollo_server__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(apollo_server__WEBPACK_IMPORTED_MODULE_1__);\n\n\nconst pubsub = new apollo_server__WEBPACK_IMPORTED_MODULE_1__[\"PubSub\"]();\n\nconst baseUrl = 'www.foaas.com';\n\nconst foaasResolvers = {\n    Query: {\n        getAnyway: () => {\n            return node_fetch__WEBPACK_IMPORTED_MODULE_0___default()(`${baseUrl}/anyway/Akshar/Kenny`).then(res => {\n                return res.json();\n            });\n        },\n        getBirthday: () => {\n            return node_fetch__WEBPACK_IMPORTED_MODULE_0___default()(`${baseUrl}/bday/Kenny/Akshar`).then(res => res.json());\n        },\n        getParticular: () => {\n            return node_fetch__WEBPACK_IMPORTED_MODULE_0___default()(`${baseUrl}/particular/redux/Akshar`).then(res => res.json());\n        }\n    }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (foaasResolvers);\n\n//# sourceURL=webpack:///./resolvers/foaasResolvers.js?");
 
 /***/ }),
 
@@ -128,7 +140,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var grap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _satelliteResolvers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./satelliteResolvers */ \"./resolvers/satelliteResolvers.js\");\n/* harmony import */ var _swapiResolvers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./swapiResolvers */ \"./resolvers/swapiResolvers.js\");\n\n\n\nconst allResolvers = [_swapiResolvers__WEBPACK_IMPORTED_MODULE_1__[\"default\"], _satelliteResolvers__WEBPACK_IMPORTED_MODULE_0__[\"default\"]];\n\nlet allQueries = allResolvers.reduce((current, accumulator) => {\n    console.log('current', current);\n    console.log('accumulator', accumulator);\n    return Object.assign({}, accumulator.Query, current.Query);\n});\n\nconsole.log(allQueries);\n\nlet allMutations = allResolvers.reduce((current, accumulator) => {\n    return Object.assign({}, accumulator.Mutation, current.Mutation);\n});\n\nlet allSubscriptions = allResolvers.reduce((current, accumulator) => {\n    return Object.assign({}, accumulator.Subscription, current.Subscription);\n});\n\nconst resolvers = {\n    Query: allQueries,\n    Mutation: allMutations,\n    Subscription: allSubscriptions\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (resolvers);\n\n//# sourceURL=webpack:///./resolvers/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _satelliteResolvers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./satelliteResolvers */ \"./resolvers/satelliteResolvers.js\");\n/* harmony import */ var _swapiResolvers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./swapiResolvers */ \"./resolvers/swapiResolvers.js\");\n/* harmony import */ var _foaasResolvers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foaasResolvers */ \"./resolvers/foaasResolvers.js\");\n/* harmony import */ var _randomUserResolvers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./randomUserResolvers */ \"./resolvers/randomUserResolvers.js\");\n\n\n\n\n\nconst allResolvers = [_foaasResolvers__WEBPACK_IMPORTED_MODULE_2__[\"default\"], _swapiResolvers__WEBPACK_IMPORTED_MODULE_1__[\"default\"], _satelliteResolvers__WEBPACK_IMPORTED_MODULE_0__[\"default\"], _randomUserResolvers__WEBPACK_IMPORTED_MODULE_3__[\"default\"]];\n\nlet allQueries,\n    allMutations,\n    allSubscriptions = {};\n\nfor (let resolver of allResolvers) {\n    let keys = Object.keys(resolver);\n\n    keys.forEach(key => {\n        console.log(resolver[key]);\n        if (key === 'Query') {\n            let singleResolver = resolver[key];\n            let tags = Object.keys(singleResolver);\n            tags.forEach(tag => {\n                Object.assign({}, allQueries, resolver[key][tag]);\n            });\n        }\n        if (key === 'Mutation') {\n            let singleResolver = resolver[key];\n            let tags = Object.keys(singleResolver);\n            tags.forEach(tag => {\n                Object.assign({}, allMutations, resolver[key][tag]);\n            });\n        }\n        if (key === 'Subscription') {\n            let singleResolver = resolver[key];\n            let tags = Object.keys(singleResolver);\n            tags.forEach(tag => {\n                Object.assign({}, allSubscriptions, resolver[key][tag]);\n            });\n        }\n    });\n}\n\n// let allQueries= allResolvers.reduce((current, accumulator)=> {\n//    return Object.assign({}, accumulator.Query, current.Query)\n// });\n\n// let allMutations = allResolvers.reduce((current, accumulator) => {\n//     return Object.assign({}, accumulator.Mutation, current.Mutation)\n// });\n\n// let allSubscriptions = allResolvers.reduce((current, accumulator) => {\n//     return Object.assign({}, accumulator.Subscription, current.Subscription)\n// });\n\n// const mergeResolvers = (objectType) => {\n//     return allResolvers.reduce((current, accumulator) => {\n//         return Object.assign({}, accumulator[objectType], current[objectType])\n//     });\n// }\n\n// const allQueries = mergeResolvers('Query');\n// const allMutations = mergeResolvers('Mutation');\n// const allSubscriptions = mergeResolvers('Subscription');\n\nconst resolvers = {\n    Query: allQueries,\n    Mutation: allMutations,\n    Subscription: allSubscriptions\n};\n\nconsole.log(resolvers);\n/* harmony default export */ __webpack_exports__[\"default\"] = (resolvers);\n\n//# sourceURL=webpack:///./resolvers/index.js?");
+
+/***/ }),
+
+/***/ "./resolvers/randomUserResolvers.js":
+/*!******************************************!*\
+  !*** ./resolvers/randomUserResolvers.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! node-fetch */ \"node-fetch\");\n/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_0__);\n\n\nconst baseUrl = 'https://randomuser.me/api/';\n\nconst randomUserResolver = {\n    Query: {\n        getUser: () => {\n            return node_fetch__WEBPACK_IMPORTED_MODULE_0___default()(baseUrl).then(res => {\n                const json = res.json();\n                return json;\n            }).then(res => {\n                console.log(res);\n            });\n        }\n    }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (randomUserResolver);\n\n//# sourceURL=webpack:///./resolvers/randomUserResolvers.js?");
 
 /***/ }),
 
@@ -152,7 +176,19 @@ eval("__webpack_require__.r(__webpack_exports__);\nconst messages = __webpack_re
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! node-fetch */ \"node-fetch\");\n/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_0__);\n\nconst { PubSub } = __webpack_require__(/*! apollo-server */ \"apollo-server\");\nconst pubsub = new PubSub();\nconst baseUrl = 'https://swapi.co/api/people/2';\n\nconst swapiResolvers = {\n    Query: {\n        getPerson: () => {\n            return node_fetch__WEBPACK_IMPORTED_MODULE_0___default()(baseUrl).then(res => {\n                console.log(res);\n                return res.json();\n            });\n        }\n    }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (swapiResolvers);\n\n//# sourceURL=webpack:///./resolvers/swapiResolvers.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! node-fetch */ \"node-fetch\");\n/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_0__);\n\nconst { PubSub } = __webpack_require__(/*! apollo-server */ \"apollo-server\");\nconst pubsub = new PubSub();\nconst baseUrl = 'https://swapi.co/api/people/2';\n\nconst swapiResolvers = {\n    Query: {\n        getPerson: () => {\n            return node_fetch__WEBPACK_IMPORTED_MODULE_0___default()(baseUrl).then(res => {\n                return res.json();\n            });\n        }\n    }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (swapiResolvers);\n\n//# sourceURL=webpack:///./resolvers/swapiResolvers.js?");
+
+/***/ }),
+
+/***/ "./schema/foaas.js":
+/*!*************************!*\
+  !*** ./schema/foaas.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nconst foaasSchema = `\n    type Foaas {\n        message: String!\n        subtitle: String!\n    }\n\n    extend type Query {\n        getAnyway: Foaas!\n        getBirthday: Foaas!\n        getParticular: Foaas!\n    }\n`;\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (foaasSchema);\n\n//# sourceURL=webpack:///./schema/foaas.js?");
 
 /***/ }),
 
@@ -164,7 +200,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var node
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _satellite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./satellite */ \"./schema/satellite.js\");\n/* harmony import */ var _swapi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./swapi */ \"./schema/swapi.js\");\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => [_swapi__WEBPACK_IMPORTED_MODULE_1__[\"default\"], _satellite__WEBPACK_IMPORTED_MODULE_0__[\"default\"]]);\n\n//# sourceURL=webpack:///./schema/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _satellite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./satellite */ \"./schema/satellite.js\");\n/* harmony import */ var _swapi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./swapi */ \"./schema/swapi.js\");\n/* harmony import */ var _foaas__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foaas */ \"./schema/foaas.js\");\n/* harmony import */ var _randomUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./randomUser */ \"./schema/randomUser.js\");\n\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (() => [_swapi__WEBPACK_IMPORTED_MODULE_1__[\"default\"], _satellite__WEBPACK_IMPORTED_MODULE_0__[\"default\"], _randomUser__WEBPACK_IMPORTED_MODULE_3__[\"default\"], _foaas__WEBPACK_IMPORTED_MODULE_2__[\"default\"]]);\n\n//# sourceURL=webpack:///./schema/index.js?");
+
+/***/ }),
+
+/***/ "./schema/randomUser.js":
+/*!******************************!*\
+  !*** ./schema/randomUser.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nconst randomUser = `\n    type RandomUser {\n        gender: String!\n        first: String!\n        last: String!\n    }\n\n    extend type Query {\n        getUser: RandomUser!\n    }\n`;\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (randomUser);\n\n//# sourceURL=webpack:///./schema/randomUser.js?");
 
 /***/ }),
 
