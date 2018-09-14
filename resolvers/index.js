@@ -16,31 +16,31 @@ for(let resolver of allResolvers) {
     let keys = Object.keys(resolver);
     
     keys.forEach(key=>{
-        console.log(resolver[key])
         if(key === 'Query'){
             let singleResolver = resolver[key];
             let tags = Object.keys(singleResolver);
             tags.forEach(tag => {
-            Object.assign({}, allQueries, resolver[key][tag]);
+                allQueries[resolver[key]] = resolver[key][tag]
             })
         }
         if(key === 'Mutation'){
             let singleResolver = resolver[key];
             let tags = Object.keys(singleResolver);
             tags.forEach(tag => {
-            Object.assign({}, allMutations, resolver[key][tag]);
+                allMutations[resolver[key]] = resolver[key][tag]
             })
         }
         if(key === 'Subscription'){
             let singleResolver = resolver[key];
             let tags = Object.keys(singleResolver);
             tags.forEach(tag => {
-            Object.assign({}, allSubscriptions, resolver[key][tag]);
+                allSubscriptions[resolver[key]] = resolver[key][tag]
             })
         }
     })
 }
 
+console.log(allQueries)
 
 // let allQueries= allResolvers.reduce((current, accumulator)=> {
 //    return Object.assign({}, accumulator.Query, current.Query)
