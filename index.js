@@ -1,28 +1,15 @@
-import { ApolloServer, PubSub } from 'apollo-server';
-import { makeExecutableSchema } from 'graphql-tools';
-import schema from './schema';
+// import { ApolloServer, PubSub } from 'apollo-server';
+// import { makeExecutableSchema } from 'graphql-tools';
+import { GraphQLServer } from 'graphql-yoga';
+import gqlServerConfig from './api';
 
-import resolvers from './resolvers' 
-import messages from './data/messages';
+const serverOptions = {
+    port: 5000,
+    endpoint: '/graphql',
+    playground: '/docs',
+    tracing: true,
+    debug: true
+  }
 
-const executableSchema = makeExecutableSchema({
-    typeDefs: [schema],
-    resolvers
-})
-
-const pubsub = new PubSub();
-
-const context = {
-    messages,
-    pubsub
-};
-
-const server = new ApolloServer({
-    schema: executableSchema,
-    context
-});
-
-server.listen()
-    .then(({ url }) => {
-        console.log(`Server running at ${url}`);
-    });
+const server = new GraphQLServer(gqlServerConfig)
+server.start(serverOptions, ({port}) => console.log(`Server on port ${port}`))
