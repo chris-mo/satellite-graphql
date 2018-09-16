@@ -1,6 +1,4 @@
 import fetch from 'node-fetch';
-import { PubSub } from 'apollo-server';
-const pubsub = new PubSub();
 
 const baseUrl = 'https://www.foaas.com';
 const options = {

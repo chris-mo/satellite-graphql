@@ -1,5 +1,3 @@
-const satelliteSchema =
-    `
     type Message {
         id: ID!
         content: String!
@@ -30,6 +28,3 @@ const satelliteSchema =
         messageAdded: Message!
         notificationAdded: Notifications!
     }
-`;
-
-export default satelliteSchema;

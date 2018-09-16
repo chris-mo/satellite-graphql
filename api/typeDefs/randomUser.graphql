@@ -1,5 +1,4 @@
-const randomUser = `
-    type RandomUser {
+type RandomUser {
         gender: String!
         name: Name!
         location: Location!
@@ -27,6 +26,3 @@ const randomUser = `
     extend type Query {
         getUser: RandomUser!
     }
-`;
-
-export default randomUser;
