@@ -1,7 +1,6 @@
 const messages = require('../../data/messages');
 const notifications = require('../../data/notifications');
 
-
 const satelliteResolvers = {
     Query: {
         allMessages: (root, args) => {
@@ -22,9 +21,11 @@ const satelliteResolvers = {
             }
             allMessages.push(newMessage);
 
-            // pubsub.publish('messageAdded', {
-            //     messageAdded: newMessage
-            // })
+            // Subscription
+            pubsub.publish('messageAdded', {
+                messageAdded: newMessage
+            })
+
             return newMessage;
         },
         addNotification: (root, args) => {
@@ -32,21 +33,22 @@ const satelliteResolvers = {
                 count: ++notifications.count
             };
 
-            // pubsub.publish('notificationAdded', {
-            //     notificationAdded: newCount
-            // });
+            // Subscription
+            pubsub.publish('notificationAdded', {
+                notificationAdded: newCount
+            });
 
             return newCount;
         }
     },
-    // Subscription: {
-    //     messageAdded: {
-    //         subscribe: () => pubsub.asyncIterator('messageAdded')
-    //     },
-    //     notificationAdded: {
-    //         subscribe: () => pubsub.asyncIterator('notificationAdded')
-    //     }
-    // }
+    Subscription: {
+        messageAdded: {
+            subscribe: () => pubsub.asyncIterator('messageAdded')
+        },
+        notificationAdded: {
+            subscribe: () => pubsub.asyncIterator('notificationAdded')
+        }
+    }
 };
 
 export default satelliteResolvers;

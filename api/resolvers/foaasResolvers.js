@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 
 const baseUrl = 'https://www.foaas.com';
+
 const options = {
     headers: {
         'Accept': 'application/json'
