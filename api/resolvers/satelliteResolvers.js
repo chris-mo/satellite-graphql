@@ -11,7 +11,7 @@ const satelliteResolvers = {
         }
     },
     Mutation: {
-        addMessage: (root, { content }) => {
+        addMessage: (root, { content }, { pubsub }) => {
             let allMessages = messages;
             const newMessage = {
                 id: allMessages.length + 1,
@@ -28,7 +28,7 @@ const satelliteResolvers = {
 
             return newMessage;
         },
-        addNotification: (root, args) => {
+        addNotification: (root, args, { pubsub }) => {
             const newCount = {
                 count: ++notifications.count
             };
@@ -43,10 +43,10 @@ const satelliteResolvers = {
     },
     Subscription: {
         messageAdded: {
-            subscribe: () => pubsub.asyncIterator('messageAdded')
+            subscribe: (root, args, { pubsub }) => pubsub.asyncIterator('messageAdded')
         },
         notificationAdded: {
-            subscribe: () => pubsub.asyncIterator('notificationAdded')
+            subscribe: (root, args, { pubsub }) => pubsub.asyncIterator('notificationAdded')
         }
     }
 };
