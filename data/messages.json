@@ -2,19 +2,19 @@
     {
         "id": 1,
         "content": "I am interested in  your property",
-        "isOwner":  true,
+        "isSender":  true,
         "readStatus": true
     },
     {
         "id": 2,
         "content": "I am interested in money",
-        "isOwner": false,
+        "isSender": false,
         "readStatus": true
     },
     {
         "id": 3,
         "content": "Let me rent for free",
-        "isOwner": true,
+        "isSender": true,
         "readStatus": true
     }
 ]

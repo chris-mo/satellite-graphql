@@ -11,12 +11,12 @@ const satelliteResolvers = {
         }
     },
     Mutation: {
-        addMessage: (root, { content }, { pubsub }) => {
+        addMessage: (root, { content, isSender }, { pubsub }) => {
             let allMessages = messages;
             const newMessage = {
                 id: allMessages.length + 1,
                 content,
-                isOwner: false,
+                isSender: isSender || false,
                 readStatus: false
             }
             allMessages.push(newMessage);

@@ -1,7 +1,7 @@
 type Message {
     id: ID!
     content: String!
-    isOwner: Boolean!
+    isSender: Boolean!
     readStatus: Boolean!
 }
 
@@ -20,7 +20,10 @@ type Query {
 }
 
 type Mutation {
-    addMessage(content: String!): Message!
+    addMessage(
+        content: String!,
+        isSender: Boolean
+    ): Message!
     addNotification: Notifications!
 }
 
