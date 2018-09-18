@@ -4,6 +4,7 @@ import gqlServerConfig from './api';
 const serverOptions = {
     port: process.env.PORT || 5000,
     endpoint: '/graphql',
+    subscriptions: '/subscriptions',
     playground: '/docs',
     tracing: true,
     debug: true
