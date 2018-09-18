@@ -4,7 +4,7 @@ import { GraphQLServer } from 'graphql-yoga';
 import gqlServerConfig from './api';
 
 const serverOptions = {
-    port: process.env.PORT || 5000,
+    port: process.env.PORT,
     endpoint: '/graphql',
     playground: '/docs',
     tracing: true,
