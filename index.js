@@ -1,5 +1,3 @@
-// import { ApolloServer, PubSub } from 'apollo-server';
-// import { makeExecutableSchema } from 'graphql-tools';
 import { GraphQLServer } from 'graphql-yoga';
 import gqlServerConfig from './api';
 
@@ -11,7 +9,8 @@ const serverOptions = {
     debug: true
   }
 
-const server = new GraphQLServer(gqlServerConfig)
-server.listen(serverOptions, ({ port }) => {
-  console.log(`Server on port ${port}`)
+const server = new GraphQLServer(gqlServerConfig);
+
+server.start(serverOptions, ({ port }) => {
+  console.log(`Server on port ${port}`);
 });
