@@ -13,3 +13,4 @@ const serverOptions = {
 
 const server = new GraphQLServer(gqlServerConfig)
 server.start(serverOptions, ({port}) => console.log(`Server on port ${port}`))
+server.listen(process.env.PORT || 5000);
