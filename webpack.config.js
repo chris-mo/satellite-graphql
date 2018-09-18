@@ -5,10 +5,10 @@ module.exports = {
     target: 'node', // in order to ignore built-in modules like path, fs, etc. 
     externals: [nodeExternals()],
     mode: 'development',
-    entry: './index.js',
+    entry: './server.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js'
+        filename: 'server.js'
     },
     module: {
         rules: [
