@@ -10,7 +10,7 @@ const serverOptions = {
   }
 
 const server = new GraphQLServer(gqlServerConfig);
-
+process.env.PORT = null;
 server.start(serverOptions, ({ port }) => {
   console.log(`Server on port ${port}`);
 });
