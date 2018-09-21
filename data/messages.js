@@ -1,4 +1,4 @@
-[
+const messages = [
     {
         "id": 1,
         "content": "I am interested in  your property",
@@ -18,3 +18,5 @@
         "readStatus": true
     }
 ]
+
+export default messages;

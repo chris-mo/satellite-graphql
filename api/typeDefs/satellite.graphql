@@ -14,17 +14,17 @@
         count: Int!
     }
 
-    type Query {
+    extend type Query {
         allMessages: [Message!]!
         notifications: Notifications!
     }
 
-    type Mutation {
+    extend type Mutation {
         addMessage(content: String!): Message!
         addNotification: Notifications!
     }
 
-    type Subscription {
+    extend type Subscription {
         messageAdded: Message!
         notificationAdded: Notifications!
     }

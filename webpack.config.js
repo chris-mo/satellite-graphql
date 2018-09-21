@@ -5,9 +5,10 @@ module.exports = {
     target: 'node', // in order to ignore built-in modules like path, fs, etc. 
     externals: [nodeExternals()],
     mode: 'development',
-    entry: './index.js',
+    entry: path.resolve(__dirname, ".", "index.ts"),
     output: {
         path: path.resolve(__dirname, 'dist'),
+        libraryTarget: "commonjs",
         filename: 'index.js'
     },
     module: {
@@ -16,7 +17,15 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 use: 'babel-loader',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
             }
         ]
     },
+    resolve: {
+        extensions: [ '.ts', 'json' ]
+    }
 };
