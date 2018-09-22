@@ -14,6 +14,7 @@ type Notifications {
     count: Int!
 }
 
+<<<<<<< HEAD
 type Query {
     allMessages: [Message!]!
     notifications: Notifications!
@@ -31,3 +32,19 @@ type Subscription {
     messageAdded: Message!
     notificationAdded: Notifications!
 }
+=======
+    extend type Query {
+        allMessages: [Message!]!
+        notifications: Notifications!
+    }
+
+    extend type Mutation {
+        addMessage(content: String!): Message!
+        addNotification: Notifications!
+    }
+
+    extend type Subscription {
+        messageAdded: Message!
+        notificationAdded: Notifications!
+    }
+>>>>>>> 831d03999d7ddeed5b8e168f02eecfb36d6ad46e

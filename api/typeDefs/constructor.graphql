@@ -1,0 +1,9 @@
+type Query {
+    getConstruct: String!
+}
+type Mutation {
+    getConstruct: String!
+}
+type Subscription {
+    getConstruct: String!
+}
