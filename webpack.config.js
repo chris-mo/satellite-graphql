@@ -5,18 +5,11 @@ module.exports = {
     target: 'node', // in order to ignore built-in modules like path, fs, etc. 
     externals: [nodeExternals()],
     mode: 'development',
-<<<<<<< HEAD
-    entry: './server.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'server.js'
-=======
     entry: path.resolve(__dirname, ".", "index.ts"),
     output: {
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: "commonjs",
         filename: 'index.js'
->>>>>>> 831d03999d7ddeed5b8e168f02eecfb36d6ad46e
     },
     module: {
         rules: [

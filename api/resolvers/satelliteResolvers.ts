@@ -8,17 +8,20 @@ const satelliteResolvers = {
     Mutation: {
         addMessage: (root, { content }, { pubsub }) => {
             let allMessages = satelliteService.getAllMessages();
+
             const newMessage = {
                 id: allMessages.length + 1,
                 content,
                 isOwner: false,
                 readStatus: false
-            }
+            };
+
             allMessages.push(newMessage);
 
             pubsub.publish('messageAdded', {
                 messageAdded: newMessage
-            })
+            });
+
             return newMessage;
         },
         addNotification: (root, args, { pubsub } ) => {
@@ -36,10 +39,10 @@ const satelliteResolvers = {
     },
     Subscription: {
         messageAdded: {
-            subscribe: (root, args, {pubsub}) => pubsub.asyncIterator('messageAdded')
+            subscribe: (root, args, { pubsub }) => pubsub.asyncIterator('messageAdded')
         },
         notificationAdded: {
-            subscribe: (root, args, {pubsub}) => pubsub.asyncIterator('notificationAdded')
+            subscribe: (root, args, { pubsub }) => pubsub.asyncIterator('notificationAdded')
         }
     }
 };

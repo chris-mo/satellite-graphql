@@ -4,11 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-<<<<<<< HEAD
-    "start": "node dist/server.js",
-=======
     "start": "ts-node dist/index.js",
->>>>>>> 831d03999d7ddeed5b8e168f02eecfb36d6ad46e
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js"
   },

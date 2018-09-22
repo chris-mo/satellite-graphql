@@ -1,11 +1,8 @@
 import getUserService from '../services/randomUserService';
 
-
 const randomUserResolver = {
     Query: {
-        getUser: () => {
-            return getUserService.getUser();
-        }
+        getUser: () => getUserService.getUser()
     }
 }   
 
