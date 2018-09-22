@@ -6,4 +6,4 @@ const loadGQLFile = (type) => {
   return fs.readFileSync(filePath, 'utf-8')
 }
 
-module.exports = loadGQLFile
+export default loadGQLFile
